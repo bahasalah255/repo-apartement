@@ -6,91 +6,66 @@ use App\Models\Apartment;
 use App\Models\BlockedDate;
 use App\Models\Reservation;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
-        // Create admin user
-        $admin = User::updateOrCreate([
+        // 1. Create specific users for testing/login
+        $admin = User::firstOrCreate([
             'email' => 'admin@example.com',
         ], [
             'name' => 'Admin User',
             'role' => 'admin',
+            'password' => bcrypt('password'),
         ]);
 
-        // Create owner user
-        $owner = User::updateOrCreate([
+        $owner = User::firstOrCreate([
             'email' => 'owner@example.com',
         ], [
             'name' => 'Owner User',
             'role' => 'owner',
+            'password' => bcrypt('password'),
         ]);
 
-        // Create client user
-        $client = User::updateOrCreate([
+        $client = User::firstOrCreate([
             'email' => 'client@example.com',
         ], [
             'name' => 'Client User',
             'role' => 'client',
+            'password' => bcrypt('password'),
         ]);
 
-        // Create apartments from the factory so photos are always valid arrays.
-        $apartmentOne = Apartment::updateOrCreate([
-            'name' => 'Appartement Centre-Ville',
-        ], Apartment::factory()->raw([
-            'owner_id' => $owner->id,
-            'name' => 'Appartement Centre-Ville',
-            'address' => '123 Rue de la Ville, Paris',
-            'price_per_night' => 100,
-            'description' => 'Magnifique appartement en plein centre-ville.',
-            'capacity' => 4,
-            'is_active' => true,
-        ]));
+        // 2. Use factories to generate additional dummy data
+        
+        // Generate additional dummy owners and clients
+        User::factory(5)->create(['role' => 'owner']);
+        User::factory(10)->create(['role' => 'client']);
 
-        $apartmentTwo = Apartment::updateOrCreate([
-            'name' => 'Studio Montmartre',
-        ], Apartment::factory()->raw([
-            'owner_id' => $owner->id,
-            'name' => 'Studio Montmartre',
-            'address' => '456 Rue Montmartre, Paris',
-            'price_per_night' => 80,
-            'description' => 'Charmant studio avec vue sur la ville.',
-            'capacity' => 2,
-            'is_active' => true,
-        ]));
-
-        // Create reservation
-        Reservation::updateOrCreate([
-            'apartment_id' => $apartmentOne->id,
-            'client_id' => $client->id,
-            'check_in' => now()->addDays(10)->toDateString(),
-            'check_out' => now()->addDays(15)->toDateString(),
-        ], [
-            'check_in' => now()->addDays(10),
-            'check_out' => now()->addDays(15),
-            'status' => 'confirmed',
-            'phone' => '0123456789',
-            'total_price' => 500,
+        // Generate apartments for our specific owner
+        $apartments = Apartment::factory(5)->create([
+            'owner_id' => $owner->id
         ]);
 
-        // Create blocked date
-        BlockedDate::updateOrCreate([
-            'apartment_id' => $apartmentOne->id,
-            'start_date' => now()->addDays(20)->toDateString(),
-            'end_date' => now()->addDays(22)->toDateString(),
-        ], [
-            'apartment_id' => $apartmentOne->id,
-            'start_date' => now()->addDays(20),
-            'end_date' => now()->addDays(22),
-            'reason' => 'Maintenance',
-        ]);
+        // Generate more random apartments
+        Apartment::factory(10)->create();
+
+        // Generate reservations for specific client on specific owner's apartments
+        foreach ($apartments as $apartment) {
+            Reservation::factory()->create([
+                'apartment_id' => $apartment->id,
+                'client_id' => $client->id,
+            ]);
+        }
+
+        // Generate completely random reservations
+        Reservation::factory(20)->create();
+
+        // Generate completely random blocked dates
+        BlockedDate::factory(15)->create();
     }
 }

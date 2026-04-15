@@ -11,9 +11,9 @@ import CardGrid from '../../components/client/discovery/CardGrid.jsx'
 import ApartmentImage from '../../components/apartments/ApartmentImage.jsx'
 
 const categories = [
-  { value: 'all', label: 'Tous' },
-  { value: 'apartments', label: 'Appartements' },
-  { value: 'spaces', label: 'Espaces' },
+  { value: 'all', label: 'Tous', icon: '🇲🇦' },
+  { value: 'apartments', label: 'Appartements', icon: '🏠' },
+  { value: 'spaces', label: 'Espaces', icon: '🏡' },
 ]
 
 export default function ClientOverviewPage() {
@@ -90,14 +90,17 @@ export default function ClientOverviewPage() {
 
   return (
     <div className="space-y-8">
-      <section className="space-y-3">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">Accueil</p>
-        <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">Decouvrir</h1>
+      <section className="space-y-2">
+        <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">Découverte</p>
+        <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+          Trouvez votre <span className="text-amber-500">séjour</span> idéal
+        </h1>
+        <p className="text-base text-slate-500">Riads, appartements et villas à travers tout le Maroc.</p>
       </section>
 
       {upcomingReservation && (
-        <section className="overflow-hidden rounded-[1.7rem] border border-white/90 bg-gradient-to-r from-white to-sky-50/55 p-4 shadow-[0_18px_40px_-30px_rgba(15,23,42,0.45)] sm:p-5">
-          <div className="grid gap-4 md:grid-cols-[220px_1fr] md:items-center">
+        <section className="flex flex-col md:flex-row items-center gap-6 overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 transition-shadow hover:shadow-sm">
+          <div className="flex-1 w-full flex flex-col md:flex-row items-center gap-4">
             <ApartmentImage
               photos={upcomingReservation.apartment?.photos}
               alt={upcomingReservation.apartment?.name}
@@ -105,7 +108,7 @@ export default function ClientOverviewPage() {
               imageClassName="h-36 w-full object-cover"
             />
             <div>
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-sky-700">Prochain sejour</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">Prochain sejour</p>
               <h2 className="mt-1 text-xl font-semibold tracking-tight text-slate-900">{upcomingReservation.apartment?.name}</h2>
               <p className="mt-1 text-sm text-slate-600">
                 {formatDate(upcomingReservation.check_in)} - {formatDate(upcomingReservation.check_out)}
@@ -113,7 +116,7 @@ export default function ClientOverviewPage() {
               <button
                 type="button"
                 onClick={() => navigate('/client/reservations')}
-                className="mt-3 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                className="mt-4 rounded-lg bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
               >
                 Voir mes reservations
               </button>
