@@ -127,7 +127,7 @@ const App = () => {
                     <div className="bg-blue-600 p-2 rounded-lg text-white group-hover:bg-blue-700 transition-colors">
                         <Home size={20} />
                     </div>
-                    <span className="text-xl font-bold text-gray-800 tracking-tight">ReservaApp</span>
+                    <span className="text-xl font-bold text-gray-800 tracking-tight">rbnb</span>
                 </Link>
 
                 <div className="flex items-center gap-4">
@@ -169,7 +169,7 @@ const App = () => {
             </main>
 
             <footer className="bg-white border-t border-gray-100 py-8 text-center mt-auto">
-                <p className="text-gray-400 text-sm">© 2026 ReservaApp - Système de réservation moderne</p>
+                <p className="text-gray-400 text-sm">© 2026 rbnb - Système de réservation moderne</p>
             </footer>
         </div>
     );
