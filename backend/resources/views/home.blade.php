@@ -49,7 +49,7 @@
     <div class="col-12">
         <h2 class="text-center mb-4">Appartements populaires</h2>
         <div class="row">
-            @foreach(\App\Models\Apartment::where('is_available', true)->latest()->take(3)->get() as $apartment)
+            @foreach(\App\Models\Apartment::where('is_active', true)->latest()->take(3)->get() as $apartment)
             <div class="col-md-4">
                 <div class="card apartment-card h-100">
                     <img src="{{ $apartment->photo ? Storage::url($apartment->photo) : 'https://via.placeholder.com/300x200' }}" 

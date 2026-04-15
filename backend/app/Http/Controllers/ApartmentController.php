@@ -18,7 +18,7 @@ class ApartmentController extends Controller
     // Liste des appartements
     public function index(Request $request)
     {
-        $query = Apartment::where('is_available', true);
+        $query = Apartment::where('is_active', true);
         
         // Filtres
         if ($request->has('capacity')) {
