@@ -32,7 +32,7 @@
         <div class="card bg-info text-white">
             <div class="card-body">
                 <h5>Revenus</h5>
-                <h2>{{ number_format($revenue, 0, ',', ' ') }} €</h2>
+                <h2>{{ number_format($revenue, 0, ',', ' ') }} DH</h2>
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
                     <tr>
                         <td>{{ $apartment->name }}</td>
                         <td>{{ $apartment->address }}</td>
-                        <td>{{ number_format($apartment->price_per_night, 0, ',', ' ') }} €</td>
+                        <td>{{ number_format($apartment->price_per_night, 0, ',', ' ') }} DH</td>
                         <td>{{ $apartment->capacity }} pers.</td>
                         <td>
                             <a href="{{ route('apartments.show', $apartment) }}" class="btn btn-sm btn-info">Voir</a>

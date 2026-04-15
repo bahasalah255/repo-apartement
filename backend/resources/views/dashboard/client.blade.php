@@ -53,7 +53,7 @@
                         <td>{{ $reservation->apartment->name }}</td>
                         <td>{{ $reservation->check_in->format('d/m/Y') }} - {{ $reservation->check_out->format('d/m/Y') }}</td>
                         <td>{{ $reservation->nights_count }} nuits</td>
-                        <td>{{ number_format($reservation->total_price, 0, ',', ' ') }} €</td>
+                        <td>{{ number_format($reservation->total_price, 0, ',', ' ') }} DH</td>
                         <td>
                             <span class="badge status-{{ $reservation->status }}">
                                 {{ $reservation->status === 'pending' ? 'En attente' : ($reservation->status === 'confirmed' ? 'Confirmée' : 'Annulée') }}

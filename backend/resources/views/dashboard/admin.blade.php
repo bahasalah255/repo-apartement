@@ -32,7 +32,7 @@
         <div class="card bg-info text-white">
             <div class="card-body">
                 <h5>Revenus</h5>
-                <h2>{{ number_format($revenue, 0, ',', ' ') }} €</h2>
+                <h2>{{ number_format($revenue, 0, ',', ' ') }} DH</h2>
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
                         <td>{{ $reservation->customer_name }}</td>
                         <td>{{ $reservation->apartment->name }}</td>
                         <td>{{ $reservation->check_in->format('d/m/Y') }} - {{ $reservation->check_out->format('d/m/Y') }}</td>
-                        <td>{{ number_format($reservation->total_price, 0, ',', ' ') }} €</td>
+                        <td>{{ number_format($reservation->total_price, 0, ',', ' ') }} DH</td>
                         <td>
                             <span class="badge status-{{ $reservation->status }}">
                                 {{ $reservation->status === 'pending' ? 'En attente' : ($reservation->status === 'confirmed' ? 'Confirmée' : 'Annulée') }}

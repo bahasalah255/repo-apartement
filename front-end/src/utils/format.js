@@ -1,7 +1,7 @@
 export function formatCurrency(value) {
-  return new Intl.NumberFormat('fr-FR', {
+  return new Intl.NumberFormat('fr-MA', {
     style: 'currency',
-    currency: 'EUR',
+    currency: 'MAD',
     maximumFractionDigits: 0,
   }).format(Number(value ?? 0))
 }

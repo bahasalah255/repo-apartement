@@ -27,7 +27,7 @@
                     
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label">Prix par nuit (€) *</label>
+                            <label class="form-label">Prix par nuit (DH) *</label>
                             <input type="number" name="price_per_night" class="form-control @error('price_per_night') is-invalid @enderror" step="1" required>
                             @error('price_per_night') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>

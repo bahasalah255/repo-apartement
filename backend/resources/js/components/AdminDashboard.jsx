@@ -27,7 +27,7 @@ const AdminDashboard = () => {
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow">
                     <h3>Revenue</h3>
-                    <p>{stats.revenue}€</p>
+                    <p>{stats.revenue} DH</p>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow">
                     <h3>Pending</h3>

@@ -14,11 +14,11 @@
                         <input type="number" name="capacity" class="form-control" value="{{ request('capacity') }}" min="1">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Prix min (€)</label>
+                        <label class="form-label">Prix min (DH)</label>
                         <input type="number" name="min_price" class="form-control" value="{{ request('min_price') }}" step="10">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Prix max (€)</label>
+                        <label class="form-label">Prix max (DH)</label>
                         <input type="number" name="max_price" class="form-control" value="{{ request('max_price') }}" step="10">
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Filtrer</button>
@@ -41,7 +41,7 @@
                         <p class="card-text">{{ Str::limit($apartment->description, 80) }}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="badge bg-info">👥 {{ $apartment->capacity }} pers.</span>
-                            <span class="text-primary fw-bold">{{ number_format($apartment->price_per_night, 0, ',', ' ') }} €/nuit</span>
+                            <span class="text-primary fw-bold">{{ number_format($apartment->price_per_night, 0, ',', ' ') }} DH/nuit</span>
                         </div>
                     </div>
                     <div class="card-footer bg-white border-top-0">

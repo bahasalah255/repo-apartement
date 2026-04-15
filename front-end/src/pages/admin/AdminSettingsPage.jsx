@@ -7,7 +7,7 @@ import ErrorState from '../../components/admin/ErrorState.jsx'
 
 export default function AdminSettingsPage() {
   const { token } = useAuth()
-  const [settings, setSettings] = useState({ support_email: '', currency: 'EUR' })
+  const [settings, setSettings] = useState({ support_email: '', currency: 'MAD' })
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')

@@ -49,7 +49,7 @@ const ApartmentList = () => {
                     />
                 </div>
                 <div className="w-full md:w-64">
-                    <label className="block text-sm font-medium text-gray-700 mb-1 italic-none">Prix max: {maxPrice}€</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1 italic-none">Prix max: {maxPrice} DH</label>
                     <input 
                         type="range" 
                         min="20" 
@@ -77,7 +77,7 @@ const ApartmentList = () => {
                                     <h2 className="text-xl font-bold text-gray-800 mb-2">{apt.name}</h2>
                                     <p className="text-gray-600 text-sm mb-4 line-clamp-2">{apt.description}</p>
                                     <div className="flex justify-between items-center mt-4">
-                                        <span className="text-xl font-bold text-blue-600">{apt.price_per_night}€<span className="text-xs text-gray-400 font-normal"> / nuit</span></span>
+                                        <span className="text-xl font-bold text-blue-600">{apt.price_per_night} DH<span className="text-xs text-gray-400 font-normal"> / nuit</span></span>
                                         <Link to={`/apartment/${apt.id}`} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                             Détails
                                         </Link>

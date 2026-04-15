@@ -109,7 +109,7 @@ const ApartmentDetails = () => {
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Euro size={18} className="text-blue-500" />
-                                    <span className="font-medium">{apartment.price_per_night}€ / nuit</span>
+                                    <span className="font-medium">{apartment.price_per_night} DH / nuit</span>
                                 </div>
                             </div>
 
@@ -129,12 +129,12 @@ const ApartmentDetails = () => {
                     <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 sticky top-24 transform hover:-translate-y-1 transition-transform">
                         <div className="flex justify-between items-end mb-8">
                             <div>
-                                <span className="text-3xl font-black text-blue-600">{apartment.price_per_night}€</span>
+                                <span className="text-3xl font-black text-blue-600">{apartment.price_per_night} DH</span>
                                 <span className="text-gray-400 text-sm italic-none font-medium"> / nuit</span>
                             </div>
                             <div className="text-right">
                                 <span className="block text-xs font-bold text-gray-400 uppercase tracking-widest italic-none">Total estimé</span>
-                                <span className="text-xl font-bold text-gray-900">{totalPrice}€</span>
+                                <span className="text-xl font-bold text-gray-900">{totalPrice} DH</span>
                             </div>
                         </div>
 
@@ -188,16 +188,16 @@ const ApartmentDetails = () => {
 
                         <ul className="space-y-3 mb-8">
                             <li className="flex justify-between text-sm text-gray-500 italic-none">
-                                <span>{apartment.price_per_night}€ x {nights} nuits</span>
-                                <span>{totalPrice}€</span>
+                                <span>{apartment.price_per_night} DH x {nights} nuits</span>
+                                <span>{totalPrice} DH</span>
                             </li>
                             <li className="flex justify-between text-sm text-gray-500 italic-none">
                                 <span>Frais de service</span>
-                                <span>0€</span>
+                                <span>0 DH</span>
                             </li>
                             <li className="pt-3 border-t flex justify-between font-bold text-gray-900 text-lg italic-none">
                                 <span>Total</span>
-                                <span className="text-blue-600">{totalPrice}€</span>
+                                <span className="text-blue-600">{totalPrice} DH</span>
                             </li>
                         </ul>
 

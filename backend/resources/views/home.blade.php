@@ -57,7 +57,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $apartment->name }}</h5>
                         <p class="card-text">{{ Str::limit($apartment->description, 100) }}</p>
-                        <p class="text-primary fw-bold">{{ number_format($apartment->price_per_night, 0, ',', ' ') }} € / nuit</p>
+                        <p class="text-primary fw-bold">{{ number_format($apartment->price_per_night, 0, ',', ' ') }} DH / nuit</p>
                         <a href="{{ route('apartments.show', $apartment) }}" class="btn btn-outline-primary">Voir détails</a>
                     </div>
                 </div>

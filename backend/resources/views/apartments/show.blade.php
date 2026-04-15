@@ -13,7 +13,7 @@
         <p class="text-muted">📍 {{ $apartment->address }}</p>
         <div class="mb-3">
             <span class="badge bg-info">👥 Capacité: {{ $apartment->capacity }} personnes</span>
-            <span class="badge bg-success">⭐ {{ number_format($apartment->price_per_night, 0, ',', ' ') }} € / nuit</span>
+            <span class="badge bg-success">⭐ {{ number_format($apartment->price_per_night, 0, ',', ' ') }} DH / nuit</span>
         </div>
         <h5>Description</h5>
         <p>{{ $apartment->description }}</p>
@@ -75,7 +75,7 @@
                         <input type="tel" name="customer_phone" class="form-control" required>
                     </div>
                     <div class="alert alert-info">
-                        Prix total à payer: <strong id="totalPrice">0</strong> €
+                        Prix total à payer: <strong id="totalPrice">0</strong> DH
                     </div>
                 </div>
                 <div class="modal-footer">

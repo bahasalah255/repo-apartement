@@ -492,7 +492,7 @@ class AdminDashboardController extends Controller
             'settings' => [
                 'app_name' => config('app.name'),
                 'timezone' => config('app.timezone'),
-                'currency' => 'EUR',
+                'currency' => 'MAD',
                 'support_email' => 'support@example.com',
             ],
         ]);

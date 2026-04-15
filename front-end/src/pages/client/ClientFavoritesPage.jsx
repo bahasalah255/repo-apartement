@@ -81,7 +81,7 @@ export default function ClientFavoritesPage() {
   const browseItems = browse?.data ?? []
   const quickChips = [
     { label: 'City', value: filters.city || 'Any' },
-    { label: 'Budget', value: filters.max_price ? `${filters.max_price} EUR max` : 'Flexible' },
+    { label: 'Budget', value: filters.max_price ? `${filters.max_price} MAD max` : 'Flexible' },
     { label: 'Guests', value: filters.capacity ? `${filters.capacity}+` : 'Any' },
   ]
 
