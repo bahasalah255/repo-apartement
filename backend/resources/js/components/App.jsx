@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ApartmentDetails from './ApartmentDetails';
+import Login from './Login';
+import { useAuth } from '../context/AuthContext';
+import { User, LogOut, Home, LogIn } from 'lucide-react';
 
 const ApartmentList = () => {
     const [apartments, setApartments] = useState([]);
@@ -14,15 +17,15 @@ const ApartmentList = () => {
         axios.get('/api/apartments', {
             params: {
                 search: search,
-                max_price: maxPrice
-            }
+                max_price: maxPrice,
+            },
         })
-            .then(response => {
+            .then((response) => {
                 setApartments(response.data);
                 setLoading(false);
             })
-            .catch(error => {
-                console.error("Erreur:", error);
+            .catch((error) => {
+                console.error('Erreur:', error);
                 setLoading(false);
             });
     };
@@ -30,55 +33,57 @@ const ApartmentList = () => {
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             fetchApartments();
-        }, 300); // Debounce de 300ms
+        }, 300);
         return () => clearTimeout(timeoutId);
     }, [search, maxPrice]);
 
     return (
         <div>
-            {/* Barre de filtrage */}
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-8 flex flex-col md:flex-row gap-6">
+            <div className="mb-8 flex flex-col gap-6 rounded-xl border border-gray-100 bg-white p-6 shadow-sm md:flex-row">
                 <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-700 mb-1 italic-none">Rechercher</label>
-                    <input 
-                        type="text" 
+                    <label className="mb-1 block text-sm font-medium text-gray-700 italic-none">Rechercher</label>
+                    <input
+                        type="text"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        placeholder="Ex: Rez-de-chaussée, Centre-ville..." 
-                        className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                        placeholder="Ex: Rez-de-chaussée, Centre-ville..."
+                        className="w-full rounded-lg border border-gray-200 px-4 py-2 outline-none transition-all focus:border-transparent focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
                 <div className="w-full md:w-64">
-                    <label className="block text-sm font-medium text-gray-700 mb-1 italic-none">Prix max: {maxPrice} DH</label>
-                    <input 
-                        type="range" 
-                        min="20" 
-                        max="1000" 
+                    <label className="mb-1 block text-sm font-medium text-gray-700 italic-none">Prix max: {maxPrice} DH</label>
+                    <input
+                        type="range"
+                        min="20"
+                        max="1000"
                         step="10"
                         value={maxPrice}
                         onChange={(e) => setMaxPrice(e.target.value)}
-                        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                        className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 accent-blue-600"
                     />
                 </div>
             </div>
 
             {loading ? (
-                <div className="flex justify-center items-center py-20">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+                <div className="flex items-center justify-center py-20">
+                    <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-500"></div>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {apartments.length === 0 ? (
-                        <p className="col-span-full text-center text-gray-400 py-10">Aucun résultat trouvé pour votre recherche.</p>
+                        <p className="col-span-full py-10 text-center text-gray-400">Aucun résultat trouvé pour votre recherche.</p>
                     ) : (
-                        apartments.map(apt => (
-                            <div key={apt.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 italic-none">
+                        apartments.map((apt) => (
+                            <div key={apt.id} className="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-md transition-shadow duration-300 hover:shadow-xl italic-none">
                                 <div className="p-6">
-                                    <h2 className="text-xl font-bold text-gray-800 mb-2">{apt.name}</h2>
-                                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">{apt.description}</p>
-                                    <div className="flex justify-between items-center mt-4">
-                                        <span className="text-xl font-bold text-blue-600">{apt.price_per_night} DH<span className="text-xs text-gray-400 font-normal"> / nuit</span></span>
-                                        <Link to={`/apartment/${apt.id}`} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                    <h2 className="mb-2 text-xl font-bold text-gray-800">{apt.name}</h2>
+                                    <p className="mb-4 line-clamp-2 text-sm text-gray-600">{apt.description}</p>
+                                    <div className="mt-4 flex items-center justify-between">
+                                        <span className="text-xl font-bold text-blue-600">
+                                            {apt.price_per_night} DH
+                                            <span className="text-xs font-normal text-gray-400"> / nuit</span>
+                                        </span>
+                                        <Link to={`/apartment/${apt.id}`} className="rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700">
                                             Détails
                                         </Link>
                                     </div>
@@ -91,18 +96,6 @@ const ApartmentList = () => {
         </div>
     );
 };
-
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import ApartmentDetails from './ApartmentDetails';
-import Login from './Login';
-import { useAuth } from '../context/AuthContext';
-import { User, LogOut, Settings, Home, LogIn } from 'lucide-react';
-
-const ApartmentList = () => {
-    // ... code existant ...
-}
 
 const App = () => {
     const { user, logout, loading } = useAuth();
