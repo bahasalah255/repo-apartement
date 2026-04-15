@@ -7,6 +7,10 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return view('home');
+})->name('home');
+
 // Page d'accueil (React SPA)
 Route::get('/{any}', function () {
     return view('home');
